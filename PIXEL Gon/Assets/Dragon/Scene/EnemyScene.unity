@@ -188,6 +188,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 2046859652371603916, guid: c125d49268698e14998d46958bd7d362, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3508180970602297865, guid: c125d49268698e14998d46958bd7d362, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.754722
@@ -227,6 +231,18 @@ PrefabInstance:
     - target: {fileID: 3508180970602297865, guid: c125d49268698e14998d46958bd7d362, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853055474511229106, guid: c125d49268698e14998d46958bd7d362, type: 3}
+      propertyPath: _health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853055474511229106, guid: c125d49268698e14998d46958bd7d362, type: 3}
+      propertyPath: _knockBackForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853055474511229106, guid: c125d49268698e14998d46958bd7d362, type: 3}
+      propertyPath: _knockBackDistance
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

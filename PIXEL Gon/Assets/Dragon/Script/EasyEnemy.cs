@@ -11,6 +11,9 @@ public class EasyEnemy : EnemyBase
     // Update is called once per frame
     void Update()
     {
-        
+        if (_health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
