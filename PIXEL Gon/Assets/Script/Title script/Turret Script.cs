@@ -10,30 +10,11 @@ public class TurretScript : MonoBehaviour
     [SerializeField] private float _fireRate = 0.5f;
     [SerializeField] private float _TurretCD = 15f;
     [SerializeField] private float _TurretLastFor = 15f;
-    float _currentTurretCD = 0f;
-    float _currentTurretLastFor = 0f;
     int _currentBulletUpgrade = 0;
     bool _fired = false;
-
-    private void Awake()
-    {
-        _currentTurretLastFor = _TurretLastFor;
-        _currentTurretCD = _TurretCD;
-    }
+    
     void Update()
     {
-        _currentTurretLastFor -= Time.deltaTime;
-        if(_currentTurretLastFor <= 0)
-        {
-            _currentTurretLastFor = 0;
-            _currentTurretCD -= Time.deltaTime;
-            if ( _currentTurretCD <= 0)
-            {
-                _currentTurretLastFor = _TurretLastFor;
-                _currentTurretCD = _TurretCD;
-            }
-        }
-        #region Check for closest enemy
         GameObject[] _enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         Transform _closestEnemy = null;
@@ -48,7 +29,7 @@ public class TurretScript : MonoBehaviour
                 _closestEnemy = enemy.transform;
             }
         }
-        if( _closestEnemy != null && _closestDistance <= _detectionRange && _currentTurretLastFor > 0f)
+        if( _closestEnemy != null && _closestDistance <= _detectionRange)
         {
             TargetEnemy(_closestEnemy);
             if(_fired == false)
@@ -57,16 +38,14 @@ public class TurretScript : MonoBehaviour
                 StartCoroutine(WaitForSecondToFire(_fireRate));
             } 
         }
-        #endregion
+ 
     }
-    #region Target Enemy
     private void TargetEnemy(Transform enemyPo)
     {
         Vector2 _direction = enemyPo.position - transform.position;
         float _angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, _angle);
     }
-    #endregion
     #region Wait to fire IENU
     IEnumerator WaitForSecondToFire(float seconds)
     {

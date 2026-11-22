@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5348077193313961110}
   - component: {fileID: 4350986195808183439}
   m_Layer: 0
-  m_Name: Turret2
+  m_Name: Turret1
   m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 6865726922090058364}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.78, y: 0.23082, z: 0}
-  m_LocalScale: {x: 1.7, y: 0.5, z: 1.9}
+  m_LocalPosition: {x: 5.06255, y: 0.23082, z: 0}
+  m_LocalScale: {x: 1.4584959, y: 0.3163933, z: 1.7538432}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4228762505268264145}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.6754716, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -104,12 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bbbd6991656a34fb253cdb7c78c859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurretScript
-  _detectionRange: 25
+  _detectionRange: 5
   _bullet:
   - {fileID: 5190585172860516503, guid: 2a730ec0153ea014cb4b58593673fe13, type: 3}
-  _fireRate: 0.3
-  _TurretCD: 12
-  _TurretLastFor: 7
+  _fireRate: 0.5
 --- !u!1 &8362052556646214684
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4228762505268264145}
   - component: {fileID: 6733647167108043858}
-  - component: {fileID: 1062744543333325852}
+  - component: {fileID: 2379953084892730603}
   m_Layer: 0
   m_Name: Square
   m_TagString: Turret
@@ -201,7 +199,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1062744543333325852
+--- !u!114 &2379953084892730603
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
