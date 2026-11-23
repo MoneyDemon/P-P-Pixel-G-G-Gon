@@ -108,8 +108,8 @@ MonoBehaviour:
   _bullet:
   - {fileID: 5190585172860516503, guid: 2a730ec0153ea014cb4b58593673fe13, type: 3}
   _fireRate: 0.1
-  _TurretCD: 15
-  _TurretLastFor: 5
+  _TurretCD: 5
+  _TurretLastFor: 20
 --- !u!1 &8362052556646214684
 GameObject:
   m_ObjectHideFlags: 0

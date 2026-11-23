@@ -14,7 +14,6 @@ public class TurretScript : MonoBehaviour
     float _currentTurretLastFor = 0f;
     int _currentBulletUpgrade = 0;
     bool _fired = false;
-
     private void Awake()
     {
         _currentTurretLastFor = _TurretLastFor;
@@ -22,18 +21,20 @@ public class TurretScript : MonoBehaviour
     }
     void Update()
     {
+        #region Start counting down (last and CD)
         _currentTurretLastFor -= Time.deltaTime;
-        if(_currentTurretLastFor <= 0)
+        if (_currentTurretLastFor <= 0)
         {
             _currentTurretLastFor = 0;
             _currentTurretCD -= Time.deltaTime;
-            if ( _currentTurretCD <= 0)
+            if (_currentTurretCD <= 0)
             {
                 _currentTurretLastFor = _TurretLastFor;
                 _currentTurretCD = _TurretCD;
             }
         }
-        #region Check for closest enemy
+        #endregion
+        #region Target Closest Enemy with Tag Enemy
         GameObject[] _enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         Transform _closestEnemy = null;
@@ -48,7 +49,9 @@ public class TurretScript : MonoBehaviour
                 _closestEnemy = enemy.transform;
             }
         }
-        if( _closestEnemy != null && _closestDistance <= _detectionRange && _currentTurretLastFor > 0f)
+        #endregion
+        #region if Enemy exist within range and Condition Fire!
+        if ( _closestEnemy != null && _closestDistance <= _detectionRange && _currentTurretLastFor > 0f)
         {
             TargetEnemy(_closestEnemy);
             if(_fired == false)
@@ -59,7 +62,7 @@ public class TurretScript : MonoBehaviour
         }
         #endregion
     }
-    #region Target Enemy
+    #region Target Enemy Medthod
     private void TargetEnemy(Transform enemyPo)
     {
         Vector2 _direction = enemyPo.position - transform.position;
