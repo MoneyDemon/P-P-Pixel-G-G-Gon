@@ -9,15 +9,14 @@ public class DamageSHOW : MonoBehaviour
 {
     #region get Game object ref
     [SerializeField] private List<GameObject> _electicField;
-    [SerializeField] private List<GameObject> _bullet;
-    [SerializeField] private List<GameObject> _wall;
     [SerializeField] private List<GameObject> _turret;
     [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _tower;
     [SerializeField] private GameObject _ui;
     [SerializeField] private GameObject _turretSpawner;
+    [SerializeField] private List<GameObject> _wall;
+    [SerializeField] private BulletSpawner _bulletSpawner;
     #endregion
-    int _currentBulletUpgrade = 0;
-    int _currentTurretUpgrade = 0;
     #region About Wall
     int _currentWallUpgrade = 0;
     int _wallCounting = 0;
@@ -26,31 +25,26 @@ public class DamageSHOW : MonoBehaviour
     int _isCDchecking = 1;
     float _rotation = 0;
     #endregion
+    int _currentTurretUpgrade = 0;
     int _currentEleticFieldUpgrade = 0;
     int _maxUpgrade = 2;
+    int _maxUpgradeForBullet = 3;
 
     void Update()
     {
-        #region M1 to spawn bullets & M2 to spawn Wall
-        if (Input.GetMouseButtonDown(1) && Time.timeScale != 0)
+        #region M2 to spawn Bullets
+        if (Input.GetMouseButtonDown(0) && Time.timeScale != 0 && _wallCounting < _wallMaxPlace * (_isCDchecking * (_currentWallUpgrade + 1)))
         {
             Vector3 _mousePo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _mousePo.z = 0;
 
-            Instantiate(_bullet[_currentBulletUpgrade], _mousePo, Quaternion.identity);
-        }
-        if (Input.GetMouseButtonDown(0) && Time.timeScale != 0 && _wallCounting < _wallMaxPlace * ( _isCDchecking * (_currentWallUpgrade + 1)))
-        {
-            Vector3 _mousePo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            _mousePo.z = 0;
-
-            Instantiate(_wall[_currentWallUpgrade], _mousePo, Quaternion.Euler(0f, 0f, _rotation)) ;
+            Instantiate(_wall[_currentWallUpgrade], _mousePo, Quaternion.Euler(0f, 0f, _rotation));
             _wallCounting += 1;
-            if(_wallCounting == _wallMaxPlace)
+            if (_wallCounting == _wallMaxPlace)
             {
                 _isCDchecking = 0;
                 Debug.Log("CD ON");
-                StartCoroutine(WaitForSecond(_wallCD)); 
+                StartCoroutine(WaitForSecond(_wallCD));
             }
         }
         #endregion
@@ -88,9 +82,12 @@ public class DamageSHOW : MonoBehaviour
     #region Upgrade Bullets Medthod
     public void UpgradeBullet()
     {
-        if(_currentBulletUpgrade < _maxUpgrade)
+        if(_bulletSpawner._currentBulletUpgrade < _maxUpgradeForBullet)
         {
-           _currentBulletUpgrade += 1;
+           _bulletSpawner._currentBulletUpgrade += 1;
+            _bulletSpawner.speed += 0.3f;
+            _bulletSpawner.firingRate -= 0.1f;
+            _bulletSpawner.bulletLife -= 0.125f;
         }
         else
         {
@@ -111,8 +108,8 @@ public class DamageSHOW : MonoBehaviour
                 _existingField = GameObject.FindWithTag("Field");
                 Destroy(_existingField);
             }
-            GameObject _fieldAct = Instantiate(_electicField[_currentEleticFieldUpgrade], _player.transform.position, Quaternion.identity);
-            _fieldAct.transform.SetParent(_player.transform);
+            GameObject _fieldAct = Instantiate(_electicField[_currentEleticFieldUpgrade], _tower.transform.position, Quaternion.identity);
+            _fieldAct.transform.SetParent(_tower.transform);
             _currentEleticFieldUpgrade += 1;
         }
         else
@@ -121,15 +118,6 @@ public class DamageSHOW : MonoBehaviour
         }
         _ui.SetActive(false);
         Time.timeScale = 1;
-    }
-    #endregion
-    #region Wait IENU
-    IEnumerator WaitForSecond(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        _isCDchecking = 1;
-        Debug.Log("CD OFF");
-        _wallCounting = 0;
     }
     #endregion
     #region Upgrade Turret Medthod
@@ -159,5 +147,14 @@ public class DamageSHOW : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    #endregion
+    #region Wait IENU
+    IEnumerator WaitForSecond(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        _isCDchecking = 1;
+        Debug.Log("CD OFF");
+        _wallCounting = 0;
+    }
     #endregion
 }

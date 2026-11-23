@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8312122044182027548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3561635889225436215}
+  - component: {fileID: 3159924326278936372}
+  m_Layer: 0
+  m_Name: 'Upgrade Manager '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3561635889225436215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8312122044182027548}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.10312, y: -0.55372, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3159924326278936372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8312122044182027548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 741cdbb0b71b5d04794e612ad902b502, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageSHOW
+  _electicField:
+  - {fileID: 5052350377508685316, guid: 804fff147c88ea24f92eb66689427ba1, type: 3}
+  - {fileID: 1645014887060145426, guid: e220c9a9cc0539d4490ab71f16c542ea, type: 3}
+  - {fileID: 4055855232312156196, guid: b1bd2327b9e5f97459e32c3ccfe488d7, type: 3}
+  _bullet:
+  - {fileID: 5190585172860516503, guid: 2a730ec0153ea014cb4b58593673fe13, type: 3}
+  - {fileID: 1397984604790887951, guid: 66666a5bdfd489b419156e27fc05c7ab, type: 3}
+  - {fileID: 6777887377985669811, guid: bec0edd8df3e51b4ab73a230074137aa, type: 3}
+  _wall:
+  - {fileID: 2088112229454327587, guid: a71e91bc6577a6e489a963f5e0d19ab9, type: 3}
+  - {fileID: 5048354618771853949, guid: 358d8865d2738f54a8018f64b0a2a65b, type: 3}
+  - {fileID: 3929152488000159265, guid: 73d5c2c49470f4245ad419191f633f27, type: 3}
+  _turret:
+  - {fileID: 6865726922090058364, guid: c6afa5fe06946bf45af825433e81ce28, type: 3}
+  - {fileID: 741628043914131935, guid: cf952917220e00f45a310809e909aea5, type: 3}
+  - {fileID: 6865726922090058364, guid: 9b1edc20daca51c47a22d5cc77a72272, type: 3}
+  - {fileID: 6860622493796692534, guid: c7619a7801e4c6e498033f65f841fa3a, type: 3}
+  - {fileID: 6865726922090058364, guid: 43cf3212885d9ec4bb5dc671770c2df9, type: 3}
+  - {fileID: 1544004187091491759, guid: 7a30dcce57c535947be0d9a38e0bc887, type: 3}
+  _player: {fileID: 0}
+  _ui: {fileID: 0}
+  _turretSpawner: {fileID: 0}
