@@ -8,7 +8,6 @@ using UnityEngine;
 public class DamageSHOW : MonoBehaviour
 {
     #region get Game object ref
-    [SerializeField] private List<GameObject> _electicField;
     [SerializeField] private List<GameObject> _turret;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _tower;
@@ -16,6 +15,7 @@ public class DamageSHOW : MonoBehaviour
     [SerializeField] private GameObject _turretSpawner;
     [SerializeField] private List<GameObject> _wall;
     [SerializeField] private BulletSpawner _bulletSpawner;
+    [SerializeField] private EclecticFieldManagerScript _eclecticFieldManager;
     #endregion
     #region About Wall
     int _currentWallUpgrade = 0;
@@ -26,13 +26,13 @@ public class DamageSHOW : MonoBehaviour
     float _rotation = 0;
     #endregion
     int _currentTurretUpgrade = 0;
-    int _currentEleticFieldUpgrade = 0;
     int _maxUpgrade = 2;
     int _maxUpgradeForBullet = 3;
+    int _eclecticFieldSetTrue = 0;
 
     void Update()
     {
-        #region M2 to spawn Bullets
+        #region M1 to spawn Wall
         if (Input.GetMouseButtonDown(0) && Time.timeScale != 0 && _wallCounting < _wallMaxPlace * (_isCDchecking * (_currentWallUpgrade + 1)))
         {
             Vector3 _mousePo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -100,17 +100,26 @@ public class DamageSHOW : MonoBehaviour
     #region Upgrade Electic Field Medthod
     public void UpgradeElecticField()
     {
-        if (_currentEleticFieldUpgrade <= _maxUpgrade)
+        Debug.Log($"{_eclecticFieldManager._currentEleticFieldUpgrade}, {_eclecticFieldSetTrue}");
+        if(_eclecticFieldManager._currentEleticFieldUpgrade <= _maxUpgrade && _eclecticFieldSetTrue >= 1)
         {
-            GameObject _existingField = null;
-            if (GameObject.FindWithTag("Field") != null)
+            if (_eclecticFieldManager._currentEleticFieldUpgrade < _maxUpgrade)
             {
-                _existingField = GameObject.FindWithTag("Field");
-                Destroy(_existingField);
+                _eclecticFieldManager._currentEleticFieldUpgrade += 1;
             }
-            GameObject _fieldAct = Instantiate(_electicField[_currentEleticFieldUpgrade], _tower.transform.position, Quaternion.identity);
-            _fieldAct.transform.SetParent(_tower.transform);
-            _currentEleticFieldUpgrade += 1;
+            if (_eclecticFieldSetTrue > 1)
+            {
+                _eclecticFieldManager._previousIndex += 1;
+            }
+            _eclecticFieldSetTrue += 1;
+            _eclecticFieldManager._electicField[_eclecticFieldManager._currentEleticFieldUpgrade].SetActive(true);
+            
+            
+        }
+        else if (_eclecticFieldManager._currentEleticFieldUpgrade == 0 && _eclecticFieldSetTrue == 0)
+        {
+            _eclecticFieldManager._electicField[0].SetActive(true);
+            _eclecticFieldSetTrue += 1;
         }
         else
         {

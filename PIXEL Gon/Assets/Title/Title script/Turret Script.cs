@@ -57,7 +57,7 @@ public class TurretScript : MonoBehaviour
             if(_fired == false)
             {
                 _fired = true;
-                StartCoroutine(WaitForSecondToFire(_fireRate));
+                StartCoroutine(WaitForSecondToFire(_fireRate, _closestEnemy));
             } 
         }
         #endregion
@@ -71,10 +71,12 @@ public class TurretScript : MonoBehaviour
     }
     #endregion
     #region Wait to fire IENU
-    IEnumerator WaitForSecondToFire(float seconds)
+    IEnumerator WaitForSecondToFire(float seconds, Transform enemyPosition)
     {
       yield return new WaitForSeconds(seconds);
-      Instantiate(_bullet[_currentBulletUpgrade], transform.position, Quaternion.identity);  
+      GameObject currentBullet = Instantiate(_bullet[_currentBulletUpgrade], transform.position, Quaternion.identity); 
+      ShootingBulletforTurret _bulletScript = currentBullet.GetComponent<ShootingBulletforTurret>();
+        _bulletScript.SetTarget(enemyPosition);
       _fired = false;
     }
     #endregion

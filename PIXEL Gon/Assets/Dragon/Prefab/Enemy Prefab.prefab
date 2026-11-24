@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8987318813473345894}
   - component: {fileID: 3853055474511229106}
   - component: {fileID: -2465842149056418825}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   _tower: {fileID: 5550754523183013189, guid: 48996814674bd84439e3ac53d16e6c68, type: 3}
   _rb: {fileID: 8987318813473345894}
   _speed: 5
-  _knockBackForce: 5
+  _knockBackDistance: 1.5
   _knockBackDuration: 0.1
   _health: 10
 --- !u!61 &-2465842149056418825
