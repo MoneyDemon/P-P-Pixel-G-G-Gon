@@ -5,7 +5,7 @@ public class EnemyBase : MonoBehaviour
 {
     [SerializeField] GameObject _tower;
     [SerializeField] Rigidbody2D _rb;
-
+    
     [SerializeField] float _speed = 5f;
     [SerializeField] float _knockBackDistance = 1.5f;
     [SerializeField] float _knockBackDuration = 0.1f;

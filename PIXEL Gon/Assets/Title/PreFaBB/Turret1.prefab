@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TurretScript
   _detectionRange: 10
   _bullet:
-  - {fileID: 5190585172860516503, guid: 2a730ec0153ea014cb4b58593673fe13, type: 3}
+  - {fileID: 678551896662041019, guid: 6fef35ac396a2ea43a312639f6ec3973, type: 3}
   _fireRate: 0.5
   _TurretCD: 10
   _TurretLastFor: 10
