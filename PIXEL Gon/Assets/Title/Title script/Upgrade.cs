@@ -87,7 +87,7 @@ public class DamageSHOW : MonoBehaviour
            _bulletSpawner._currentBulletUpgrade += 1;
             _bulletSpawner.speed += 0.3f;
             _bulletSpawner.firingRate -= 0.1f;
-            _bulletSpawner.bulletLife -= 0.125f;
+            _bulletSpawner.bulletLife -= 0.5f;
         }
         else
         {

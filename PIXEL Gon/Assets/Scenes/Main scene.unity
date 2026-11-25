@@ -197,6 +197,10 @@ PrefabInstance:
       propertyPath: _tower
       value: 
       objectReference: {fileID: 137387840}
+    - target: {fileID: 3853055474511229106, guid: c125d49268698e14998d46958bd7d362, type: 3}
+      propertyPath: _health
+      value: 1e+11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1138,6 +1142,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1345284972573668300, guid: 90ddb671b53172544b572aa77f5bb798, type: 3}
+      propertyPath: spawnerType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345284972573668300, guid: 90ddb671b53172544b572aa77f5bb798, type: 3}
       propertyPath: _bullet.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -1249,6 +1257,12 @@ PrefabInstance:
     - target: {fileID: 2059520791388993118, guid: d16401f836d170a42ac7062afa41c38e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UpgradeWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2116247144061727481, guid: d16401f836d170a42ac7062afa41c38e, type: 3}
+      propertyPath: m_text
+      value: 'Pick 1 out of 3
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 4222154809823600724, guid: d16401f836d170a42ac7062afa41c38e, type: 3}
       propertyPath: m_Pivot.x
