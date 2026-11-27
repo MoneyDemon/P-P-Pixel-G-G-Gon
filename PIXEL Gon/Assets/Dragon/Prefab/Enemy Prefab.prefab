@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2465842149056418825}
   m_Layer: 6
   m_Name: Enemy Prefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,10 +134,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EasyEnemy
   _tower: {fileID: 5550754523183013189, guid: 48996814674bd84439e3ac53d16e6c68, type: 3}
   _rb: {fileID: 8987318813473345894}
+  _health: 10
   _speed: 5
   _knockBackDistance: 1.5
   _knockBackDuration: 0.1
-  _health: 10
 --- !u!61 &-2465842149056418825
 BoxCollider2D:
   m_ObjectHideFlags: 0

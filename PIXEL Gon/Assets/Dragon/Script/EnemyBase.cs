@@ -3,21 +3,17 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    [SerializeField] GameObject _tower;
-    [SerializeField] Rigidbody2D _rb;
-
-    [SerializeField] float _speed = 5f;
+    public GameObject _tower;
+    public Rigidbody2D _rb;
     public float _health = 5f;
-
-    [SerializeField] float _knockBackDistance = 1.5f;
-    [SerializeField] float _knockBackDuration = 0.1f;
-
+    public Tower _towerHealth;
+    public EnemyManager _enemyManager;
+    public WallHealth _wallHealth;
+    [SerializeField] float _speed = 5f;
     private Transform _target;
-
-    private bool _isKnockedBack;
-
     private float _targetTimer;
     private const float _targetRefreshRate = 0.25f;
+    
 
     protected virtual void Start()
     {
@@ -35,9 +31,9 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
-        if (_isKnockedBack) return;
+        
         if (_target == null) return;
 
         Vector2 _direction =
@@ -46,7 +42,7 @@ public class EnemyBase : MonoBehaviour
         _rb.linearVelocity = _direction * _speed;
     }
 
-    private void FindTarget()
+    protected virtual void FindTarget()
     {
         
         GameObject[] _walls = GameObject.FindGameObjectsWithTag("Wall");
@@ -81,52 +77,7 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Tower") || collision.gameObject.CompareTag("Wall"))
-        {
-            _health--;
+    
 
-            if (!_isKnockedBack)
-            {
-                StartCoroutine(KnockBack());
-            }
-        }
-    }
-
-    private IEnumerator KnockBack()
-    {
-        
-        _isKnockedBack = true;
-
-        _rb.linearVelocity = Vector2.zero;
-
-        Vector2 _startPos = _rb.position;
-
-        Vector2 _direction =
-            (_rb.position - (Vector2)_tower.transform.position).normalized;
-
-        Vector2 _endPos =
-            _startPos + _direction * _knockBackDistance;
-
-        float _elapsed = 0f;
-
-        while (_elapsed < _knockBackDuration)
-        {
-            _rb.MovePosition(
-                Vector2.Lerp(
-                    _startPos,
-                    _endPos,
-                    _elapsed / _knockBackDuration
-                )
-            );
-
-            _elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        _rb.MovePosition(_endPos);
-
-        _isKnockedBack = false;
-    }
+   
 }
