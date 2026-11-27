@@ -13,18 +13,11 @@ public class DamageSHOW : MonoBehaviour
     [SerializeField] private GameObject _tower;
     [SerializeField] private GameObject _ui;
     [SerializeField] private GameObject _turretSpawner;
-    [SerializeField] private List<GameObject> _wall;
     [SerializeField] private BulletSpawner _bulletSpawner;
     [SerializeField] private EclecticFieldManagerScript _eclecticFieldManager;
+    [SerializeField] private WallManager _wallManager;
     #endregion
-    #region About Wall
-    int _currentWallUpgrade = 0;
-    int _wallCounting = 0;
-    int _wallMaxPlace = 5;
-    float _wallCD = 15;
-    int _isCDchecking = 1;
-    float _rotation = 0;
-    #endregion
+    
     int _currentTurretUpgrade = 0;
     int _maxUpgrade = 2;
     int _maxUpgradeForBullet = 3;
@@ -32,29 +25,6 @@ public class DamageSHOW : MonoBehaviour
 
     void Update()
     {
-        #region M1 to spawn Wall
-        if (Input.GetMouseButtonDown(0) && Time.timeScale != 0 && _wallCounting < _wallMaxPlace * (_isCDchecking * (_currentWallUpgrade + 1)))
-        {
-            Vector3 _mousePo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            _mousePo.z = 0;
-
-            Instantiate(_wall[_currentWallUpgrade], _mousePo, Quaternion.Euler(0f, 0f, _rotation));
-            _wallCounting += 1;
-            if (_wallCounting == _wallMaxPlace)
-            {
-                _isCDchecking = 0;
-                Debug.Log("CD ON");
-                StartCoroutine(WaitForSecond(_wallCD));
-            }
-        }
-        #endregion
-        #region Rotate wall
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            _rotation += 45;
-            Debug.Log($"Current wall rotation: {_rotation % 180}");
-        }
-        #endregion
         #region Open UI
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -66,10 +36,10 @@ public class DamageSHOW : MonoBehaviour
     #region Upgrade Wall Medthod
     public void UpgradeWall()
     {
-        if (_currentWallUpgrade < _maxUpgrade)
+        if (_wallManager.CurrentWallUpgrade < _maxUpgrade)
         {
-            _currentWallUpgrade += 1;
-            _wallMaxPlace += 5;
+           _wallManager.CurrentWallUpgrade += 1;
+           _wallManager.WallMaxPlace += 5;
         }
         else
         {
@@ -100,7 +70,7 @@ public class DamageSHOW : MonoBehaviour
     #region Upgrade Electic Field Medthod
     public void UpgradeElecticField()
     {
-        Debug.Log($"{_eclecticFieldManager._currentEleticFieldUpgrade}, {_eclecticFieldSetTrue}");
+        
         if(_eclecticFieldManager._currentEleticFieldUpgrade <= _maxUpgrade && _eclecticFieldSetTrue >= 1)
         {
             if (_eclecticFieldManager._currentEleticFieldUpgrade < _maxUpgrade)
@@ -156,14 +126,5 @@ public class DamageSHOW : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    #endregion
-    #region Wait IENU
-    IEnumerator WaitForSecond(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        _isCDchecking = 1;
-        Debug.Log("CD OFF");
-        _wallCounting = 0;
-    }
     #endregion
 }
