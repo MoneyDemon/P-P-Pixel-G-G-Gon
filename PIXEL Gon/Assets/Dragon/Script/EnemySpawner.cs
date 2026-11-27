@@ -2,11 +2,20 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    public Transform spawnPoint;
+    [SerializeField] GameObject _enemyPrefab;
+    [SerializeField] Transform _spawnPoint;
+    [SerializeField] EnemyManager _enemyManager;
 
-    void Start()
+    private float _timer = 1f;
+   
+    private void Update()
     {
-        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+        _timer -= Time.deltaTime;
+        if(_enemyManager.CanSpawnEnemy && _timer <= 0)
+        {
+            Instantiate(_enemyPrefab, _spawnPoint.position, Quaternion.identity);
+            _enemyManager.RegisterEnemySpawn();
+            _timer = 1f;
+        }
     }
 }
