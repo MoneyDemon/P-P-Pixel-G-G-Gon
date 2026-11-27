@@ -4,17 +4,20 @@ public class EasyEnemy : EnemyBase
 {
     private EnemyManager _enemyManager;
 
-    private void Start()
+    protected override void Start()
     {
-        // Searches the active scene for the EnemyManager script
+        base.Start();
+
         _enemyManager = FindFirstObjectByType<EnemyManager>();
     }
-    void Update()
+
+    protected override void Update()
     {
+        base.Update();
+
         if (_health <= 0)
         {
-            Destroy(this.gameObject);
-            
+            Destroy(gameObject);
         }
     }
 }
