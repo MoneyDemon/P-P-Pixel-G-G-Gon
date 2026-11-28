@@ -10,13 +10,7 @@ public class KnockBackEnemy : EnemyBase
     private bool _isKnockedBack;
     
 
-    protected override void Start()
-    {
-        base.Start();
 
-        _enemyManager = FindFirstObjectByType<EnemyManager>();
-        
-    }
 
     protected override void Update()
     {
@@ -27,7 +21,7 @@ public class KnockBackEnemy : EnemyBase
             Destroy(gameObject);
             _enemyManager.EnemyDeathCount();
         }
-        _wallHealth = FindAnyObjectByType<WallHealth>();
+        
     }
 
     protected override void FixedUpdate()
@@ -42,6 +36,7 @@ public class KnockBackEnemy : EnemyBase
         {
             _health--;
             _towerHealth._towerHealth -= _damage;
+            Debug.Log($"Hit {_towerHealth}");
 
             if (!_isKnockedBack)
             {

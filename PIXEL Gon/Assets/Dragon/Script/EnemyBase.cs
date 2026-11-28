@@ -18,6 +18,9 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Start()
     {
         FindTarget();
+        _enemyManager = FindFirstObjectByType<EnemyManager>();
+        _towerHealth = FindFirstObjectByType<Tower>();
+
     }
 
     protected virtual void Update()
@@ -29,6 +32,7 @@ public class EnemyBase : MonoBehaviour
             FindTarget();
             _targetTimer = 0f;
         }
+        _wallHealth = FindAnyObjectByType<WallHealth>();
     }
 
     protected virtual void FixedUpdate()
