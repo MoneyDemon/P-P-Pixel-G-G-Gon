@@ -4,21 +4,22 @@ using UnityEngine;
 public class LeaderboardManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text _leaderboardText;
+    [SerializeField] private SaveManager _saveManager;
 
     private void Start()
     {
-        UpdateLeaderboard();
+        SaveData _saveData = _saveManager.LoadGame();
+
+        if (_saveData != null)
+        {
+            _leaderboardText.text = $"Best Player: {_saveData._playerName}\nHighest Wave: {_saveData._highestWave}";
+        }
+
+        if (_saveData == null)
+        {
+            _leaderboardText.text = "No High Score";
+        }
     }
 
-    public void UpdateLeaderboard()
-    {
-        string _playerName = PlayerPrefs.GetString("PlayerName", "Nobody");
-        int _highestWave = PlayerPrefs.GetInt("HighestWave", 0);
 
-        Debug.Log($"Loaded Name: {_playerName}");
-        Debug.Log($"Loaded Highest Wave: {_highestWave}");
-
-        _leaderboardText.text =
-            $"Best Player: {_playerName}\nHighest Wave: {_highestWave}";
-    }
 }

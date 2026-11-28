@@ -9,7 +9,12 @@ public class Tower : MonoBehaviour
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private TMP_Text _healthText;
     [SerializeField] private EnemyManager _enemyManager;
+    [SerializeField] private SaveManager _saveManager;
 
+    private void Start()
+    {
+        _saveManager = FindFirstObjectByType<SaveManager>();
+    }
     private void Update()
     {
         _healthSlider.value = _towerHealth / 100;
@@ -17,27 +22,29 @@ public class Tower : MonoBehaviour
 
         if (_towerHealth <= 0)
         {
-            SaveHighWave();
+            SaveData _saveData = _saveManager.LoadGame();
 
-            Debug.Log("GGsEz");
+            int _savedWave = 0;
+
+            if (_saveData != null)
+            {
+                _savedWave = _saveData._highestWave;
+            }
+
+            if (_enemyManager.CurrentWave > _savedWave)
+            {
+                string _playerName =
+                    PlayerPrefs.GetString("PlayerName", "Nobody");
+
+                _saveManager.SaveGame(
+                    _playerName,
+                    _enemyManager.CurrentWave
+                );
+            }
+
             Destroy(gameObject);
         }
     }
 
-    private void SaveHighWave()
-    {
-        int _currentWave = _enemyManager.CurrentWave;
-        int _highestWave = PlayerPrefs.GetInt("HighestWave", 0);
-
-        Debug.Log($"Current Wave: {_currentWave}");
-        Debug.Log($"Saved Highest Wave: {_highestWave}");
-
-        if (_currentWave > _highestWave)
-        {
-            PlayerPrefs.SetInt("HighestWave", _currentWave);
-            PlayerPrefs.Save();
-
-            Debug.Log($"NEW RECORD SAVED! Wave {_currentWave}");
-        }
-    }
+   
 }

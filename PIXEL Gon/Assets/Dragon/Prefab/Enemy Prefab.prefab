@@ -132,12 +132,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baab93523ab60de49b27c4a4cd08f57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EasyEnemy
-  _tower: {fileID: 5550754523183013189, guid: 48996814674bd84439e3ac53d16e6c68, type: 3}
+  _tower: {fileID: 7639715179630932407, guid: 54da58a90330001419c706ae8d8f02b6, type: 3}
   _rb: {fileID: 8987318813473345894}
   _health: 10
+  _towerHealth: {fileID: 1774915551220044928, guid: 54da58a90330001419c706ae8d8f02b6, type: 3}
+  _enemyManager: {fileID: 0}
+  _wallHealth: {fileID: 0}
   _speed: 5
   _knockBackDistance: 1.5
   _knockBackDuration: 0.1
+  _damage: 2
 --- !u!61 &-2465842149056418825
 BoxCollider2D:
   m_ObjectHideFlags: 0

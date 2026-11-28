@@ -5,17 +5,14 @@ using UnityEngine.SceneManagement;
 public class NameMenu : MonoBehaviour
 {
     [SerializeField] private TMP_InputField _nameInput;
-    [SerializeField] private int _gameSceneNumber;
+    [SerializeField] private int _sceneTndex;
 
     public void ContinueToGame()
     {
-        string _playerName = _nameInput.text;
-
-        Debug.Log($"Player entered name: {_playerName}");
-
-        PlayerPrefs.SetString("PlayerName", _playerName);
+        PlayerPrefs.SetString("PlayerName", _nameInput.text);
         PlayerPrefs.Save();
+        SceneManager.LoadScene(_sceneTndex);
 
-        SceneManager.LoadScene(_gameSceneNumber);
+        Debug.Log($"Name Saved: {_nameInput.text}");
     }
 }
