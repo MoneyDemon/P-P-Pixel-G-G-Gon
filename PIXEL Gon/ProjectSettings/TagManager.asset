@@ -8,6 +8,7 @@ TagManager:
   - Field
   - Turret
   - Tower
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
-  - 
-  - 
+  - Invisible Wall
+  - Player
+  - Wall
   - 
   - 
   - 
