@@ -39,7 +39,7 @@ public class DamageSHOW : MonoBehaviour
         if (_wallManager.CurrentWallUpgrade < _maxUpgrade)
         {
            _wallManager.CurrentWallUpgrade += 1;
-           _wallManager.WallMaxPlace += 5;
+           _wallManager.WallMaxPlace += 2;
         }
         else
         {
