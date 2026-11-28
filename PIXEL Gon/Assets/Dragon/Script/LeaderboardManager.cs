@@ -3,44 +3,22 @@ using UnityEngine;
 
 public class LeaderboardManager : MonoBehaviour
 {
-    [SerializeField] private TMP_InputField _nameInput;
-    [SerializeField] private TMP_Text _recordText;
+    [SerializeField] private TMP_Text _leaderboardText;
 
     private void Start()
     {
-        LoadRecord();
-
-        // Load saved name back into input field
-        _nameInput.text = PlayerPrefs.GetString("PlayerName", "");
+        UpdateLeaderboard();
     }
 
-    public void SavePlayerName()
-    {
-        PlayerPrefs.SetString("PlayerName", _nameInput.text);
-        PlayerPrefs.Save();
-    }
-
-    public void SaveWave(int _waveNumber)
-    {
-        int _highestWave = PlayerPrefs.GetInt("HighestWave", 0);
-
-        if (_waveNumber > _highestWave)
-        {
-            PlayerPrefs.SetString("PlayerName", _nameInput.text);
-            PlayerPrefs.SetInt("HighestWave", _waveNumber);
-
-            PlayerPrefs.Save();
-
-            LoadRecord();
-        }
-    }
-
-    private void LoadRecord()
+    public void UpdateLeaderboard()
     {
         string _playerName = PlayerPrefs.GetString("PlayerName", "Nobody");
         int _highestWave = PlayerPrefs.GetInt("HighestWave", 0);
 
-        _recordText.text =
+        Debug.Log($"Loaded Name: {_playerName}");
+        Debug.Log($"Loaded Highest Wave: {_highestWave}");
+
+        _leaderboardText.text =
             $"Best Player: {_playerName}\nHighest Wave: {_highestWave}";
     }
 }

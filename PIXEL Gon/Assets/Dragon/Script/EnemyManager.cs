@@ -4,19 +4,17 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     private bool _canSpawnEnemy;
-
     private int _aliveEnemyCount;
     private int _spawnedEnemyCount;
-
     private int _wave;
     private int _maxEnemyCount;
-
     private float _timer = 10f;
 
     [SerializeField] private TMP_Text _waveCountText;
     [SerializeField] private TMP_Text _aliveEnemyText;
 
     public bool CanSpawnEnemy => _canSpawnEnemy;
+    public int CurrentWave => _wave;
 
     private void Start()
     {

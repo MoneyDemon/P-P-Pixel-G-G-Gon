@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Start scene.unity
     guid: 88e3da1e56bb4024192d3b483e7a84e7
+  - enabled: 1
+    path: Assets/Dragon/Scene/EnterNameScene.unity
+    guid: 87f7099c75853ca47a67438dfce5efdd
   - enabled: 0
     path: Assets/Scenes/Main scene.unity
     guid: b1221b579731e914b8a104d9c2794195
